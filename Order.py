@@ -1,3 +1,5 @@
+import datetime
+
 class Order:
     def __init__(self, order, quantity, investment):
         self.order = order
@@ -8,7 +10,8 @@ class Order:
         """make market
         """
         price = 150 #get_price(investment)
-        return price * self.quantity
+        dt = datetime.datetime.now()
+        return price * self.quantity, price, dt
 
 
 order = Order('market_order', 10, 'SMA')
