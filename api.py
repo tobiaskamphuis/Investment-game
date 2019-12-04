@@ -26,6 +26,7 @@ for stock_index in a:
      # print(raw_data)
 
 print (responses)
+
 print (responses['AAPL'].loc['2019-11-13 09:35:00 '][0])
 
 # print(responses.values([1]) #prints values
