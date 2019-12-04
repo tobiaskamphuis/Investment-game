@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 class Order:
     def __init__(self, order, quantity, investment):
@@ -10,7 +10,9 @@ class Order:
         """make market
         """
         price = 150 #get_price(investment)
-        dt = datetime.datetime.now()
+
+        now = datetime.now()
+        dt = now.strftime("%m/%d/%Y, %H:%M:%S")
         return price * self.quantity, price, dt
 
 
