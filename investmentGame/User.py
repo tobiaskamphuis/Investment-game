@@ -1,12 +1,16 @@
 from investmentGame.Order import Order
 from investmentGame.Portfolio import Portfolio
+from sqlalchemy import Column, Integer, String, Boolean
+from investmentGame.db import Base, engine, session_factory
 
-class User:
-    def __init__(self, name, age, balance):
-        self.name = name
-        self.age = age
-        self.balance = balance
-        self.portfolio = Portfolio()
+
+class User(Base):
+    __tablename__ = "Users"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    age = Column(Integer)
+    balance = Column(Integer)
+    #portfolio = Portfolio()
 
     def transaction(self, order, quantity, investment):
         """"Make transaction"""
@@ -20,15 +24,3 @@ class User:
 
     def withdraw_money(self, amount):
         self.balance = self.balance - amount
-
-
-p1 = User("John", 36, 10000)
-p1.transaction('Sell', 10, 'x')
-p1.transaction('Buy', 20, 'y')
-p1.portfolio.store_transactions()
-
-
-
-print(p1.balance)
-print(p1.name)
-print(p1.portfolio.portfolio)

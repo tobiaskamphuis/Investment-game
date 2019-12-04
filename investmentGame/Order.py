@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Order:
     def __init__(self, order, quantity, investment):
         self.order = order
@@ -15,9 +16,3 @@ class Order:
         dt = now.strftime("%m/%d/%Y, %H:%M:%S")
         return price * self.quantity, price, dt
 
-
-order = Order('market_order', 10, 'SMA')
-
-print(order.quantity)
-print(order.investment)
-print(order.market_order())
