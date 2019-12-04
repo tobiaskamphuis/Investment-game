@@ -12,10 +12,10 @@ class User(Base):
     balance = Column(Integer)
     #portfolio = Portfolio()
 
-    def transaction(self, order, quantity, investment):
+    def transaction(self, order, order_type, quantity, investment, execution_price = 0, execution_date = 0):
         """"Make transaction"""
-        o = Order(order, quantity, investment)
-        transaction_amount, price, date = o.market_order()
+        o = Order(order, order_type, quantity, investment)
+        transaction_amount, price, date = o.execution_order(execution_price, execution_date)
         self.balance = self.balance - transaction_amount
         self.portfolio.add_transaction(order, quantity, investment, price, date)
 
