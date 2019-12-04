@@ -10,7 +10,7 @@ class Order:
     def market_order(self):
         """buy and sell at market price"""
         price = 150 #get_price(investment)
-        dt = date.today().strftime("%d/%m/%Y")
+        dt = date.today().strftime("%m/%d/%Y, %H:%M:%S")
         return price * self.quantity, price, dt
 
     def limit_order(self, execution_price, order_date):
