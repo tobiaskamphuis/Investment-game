@@ -15,14 +15,6 @@ app = Flask(__name__)
 # We are creating an instance of the Flask class and calling it app. Here we are creating a new web application.
 
 
-Session = sessionmaker(bind=engine)
-s = Session()
-add_user = User(name="Esther", password="password", age=25, balance=1000)
-s.add(add_user)
-print(s.query(User).filter_by(name='Esther').first())
-s.commit()
-
-
 # if you are logged in, the home screen will be shown, if you are not logged in, you will have to login
 @app.route('/')
 # default page, below function will be activated if default page is reached
@@ -37,6 +29,10 @@ def home():
 def about():
     return render_template("about.html")
 
+@app.route('/portfolio')
+# default page, below function will be activated if default page is reached
+def portfolio():
+    return render_template("portfolio.html")
 
 # validation of login variables if you have to login
 # login user name = admin, and password is password
@@ -46,16 +42,7 @@ def user_login():
         if request.form['password'] == 'password' and request.form['username'] == 'admin':
             session['logged_in'] = True
         else:
-            post_name = request.form['name']
-            post_password = request.form['password']
-            Session = sessionmaker(bind=engine)
-            s = Session()
-            query = s.query(User).filter(User.name.in_([post_name]), User.password.in_([post_password]))
-            result = query.first()
-            if result:
-                session['logged_in'] = True
-            else:
-                flash('wrong password!')
+            flash('Wrong password')
     return home()
 
 
