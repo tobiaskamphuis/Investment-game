@@ -4,14 +4,21 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 
-# find current working directory
-cwd = os.getcwd()
-# directory of the script being run
-#
-os.path.dirname(os.path.abspath(__file__))
+def db_engine_creation():
+    # find current working directory
+    cwd = os.getcwd()
+    # latest folder in working directory
+    last_folder = os.path.basename(os.path.normpath(os.path.dirname(cwd)))
+    Base = declarative_base()
+    if last_folder == 'investment game':
+        engine = create_engine('sqlite:///investmentGame/db_engine.sqlite', echo=False)
+    elif last_folder == 'investmentGame':
+        engine = create_engine('sqlite:///db_engine.sqlite', echo=False)
+    session_factory = sessionmaker(bind=engine)
+    return engine, session_factory
 
-Base = declarative_base()
-engine = create_engine('sqlite:///investmentGame.sqlite', echo=False)
-session_factory = sessionmaker(bind=engine)
+
+
+
 
 
