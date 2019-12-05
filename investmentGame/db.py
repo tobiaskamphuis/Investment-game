@@ -3,17 +3,19 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
+Base = declarative_base()
 
 def db_engine_creation():
     # find current working directory
     cwd = os.getcwd()
     # latest folder in working directory
-    last_folder = os.path.basename(os.path.normpath(os.path.dirname(cwd)))
-    Base = declarative_base()
+    last_folder = os.path.basename(os.path.normpath(cwd))
     if last_folder == 'investment game':
-        engine = create_engine('sqlite:///investmentGame/db_engine.sqlite', echo=False)
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        engine = create_engine('sqlite:///investmentGame/investmentGame.sqlite', echo=False)
     elif last_folder == 'investmentGame':
-        engine = create_engine('sqlite:///db_engine.sqlite', echo=False)
+        print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+        engine = create_engine('sqlite:///investmentGame.sqlite', echo=False)
     session_factory = sessionmaker(bind=engine)
     return engine, session_factory
 

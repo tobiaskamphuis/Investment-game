@@ -1,9 +1,8 @@
 from investmentGame.User import User
 from investmentGame.Portfolio import Portfolio
 from sqlalchemy.ext.declarative import declarative_base
-from investmentGame.db import db_engine_creation
+from investmentGame.db import db_engine_creation, Base
 
-Base = declarative_base()
 engine, session_factory = db_engine_creation()
 
 def db_init():

@@ -1,10 +1,9 @@
 from investmentGame.Order import Order
-from investmentGame.Portfolio import Portfolio
+#from investmentGame.Portfolio import Portfolio
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from investmentGame.db import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -13,7 +12,7 @@ class User(Base):
     password = Column(String)
     age = Column(Integer)
     balance = Column(Integer)
-    portfolios = relationship("Portfolio", order_by=Portfolio.id, back_populates="user")
+    portfolios = relationship("Portfolio", order_by="Portfolio.id", back_populates="user")
 
     def transaction(self, order, order_type, quantity, investment, execution_price=0, execution_date=0):
         """"Make transaction"""

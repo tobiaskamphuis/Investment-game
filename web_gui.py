@@ -7,9 +7,13 @@ from sqlalchemy.orm import sessionmaker
 # session by flask refers to http session within view (@app.route('/...')
 
 #import own generated files or database
-from investmentGame.db import engine
+from investmentGame.db import db_engine_creation, Base
 from investmentGame.User import User
+import investmentGame.Portfolio
 
+# create the SQL database
+engine, session_factory = db_engine_creation()
+Base.metadata.create_all(engine)
 app = Flask(__name__)
 # _name means this current file. In this case, it will be web_gui.py. This file represents my web application
 # We are creating an instance of the Flask class and calling it app. Here we are creating a new web application.
@@ -39,7 +43,14 @@ def portfolio():
 @app.route('/login', methods=['POST','GET'])
 def user_login():
     if request.method == 'POST':
-        if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        name = request.form['name']
+        password = request.form['password']
+        s = session_factory()
+        query = s.query(User).filter(User.name.in_([name]), User.password.in_([password]))
+        result = query.first()
+        if result:
+            session['logged_in'] = True
+        elif name == 'admin' and password == 'password':
             session['logged_in'] = True
         else:
             flash('Wrong password')
