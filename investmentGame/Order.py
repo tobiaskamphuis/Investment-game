@@ -1,5 +1,5 @@
 from datetime import date
-from  api import responses
+# from  api import responses
 
 
 class Order:
@@ -33,14 +33,14 @@ class Order:
                         return 'error'
 
 
-order1 = Order('Buy', 'market_order', 10, 'SMA')
+# order1 = Order('Buy', 'market_order', 10, 'SMA')
+#
+# print(order1.quantity)
+# print(order1.investment)
+# print(order1.execution_order())
 
-print(order1.quantity)
-print(order1.investment)
-print(order1.execution_order())
-
-order2 = Order('Buy', 'limit_order', 10, 'SMA')
-
-print(order2.quantity)
-print(order2.investment)
-print(order2.execution_order(160, '04/12/2019'))
+# order2 = Order('Buy', 'limit_order', 10, 'SMA')
+#
+# print(order2.quantity)
+# print(order2.investment)
+# print(order2.execution_order(160, '04/12/2019'))
