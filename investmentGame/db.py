@@ -15,7 +15,7 @@ def db_engine_creation():
     elif last_folder == 'investmentGame':
         engine = create_engine('sqlite:///db_engine.sqlite', echo=False)
     session_factory = sessionmaker(bind=engine)
-    return Base, engine, session_factory
+    return engine, session_factory
 
 
 

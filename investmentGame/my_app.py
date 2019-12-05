@@ -1,7 +1,8 @@
 from investmentGame.User import User
 from investmentGame.User import Portfolio
-from investmentGame.db import Base, engine, session_factory
+from investmentGame.db import db_engine_creation
 
+engine, session_factory = db_engine_creation()
 
 if __name__ == '__main__':
     print('Welcome to my investment game\n')
