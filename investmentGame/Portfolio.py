@@ -1,12 +1,27 @@
 import pandas as pd
+from investmentGame.db import Base, engine, session_factory
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
+# from investmentGame.User import User
 
 
-class Portfolio:
-    def __init__(self):
-        self.portfolio = []
+class Portfolio(Base):
+    __tablename__ = "portfolios"
+    id = Column(Integer, primary_key=True)
+    portfolio = Column(String)
+    order = Column(String)
+    quantity = Column(Integer)
+    order_type = Column(String)
+    investment = Column(Integer)
+    price = Column(Integer)
+    date = Column(String)
 
-    def add_transaction(self, order, quantity, investment, price, date):
-        self.portfolio.append([order, quantity, investment, price, date])
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship("User", back_populates="portfolios")
 
-    def store_transactions(self):
-        pd.DataFrame(self.portfolio).to_csv("transactions.csv")
+
+    # def add_transaction(self, order, quantity, investment, price, date):
+    #     self.portfolio.append([order, quantity, investment, price, date])
+
+    # def store_transactions(self):
+    #     pd.DataFrame(self.portfolio).to_csv("transactions.csv")
