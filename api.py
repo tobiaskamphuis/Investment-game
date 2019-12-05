@@ -11,9 +11,11 @@ def bewerking(response):
     df = pd.DataFrame(data).T.apply(pd.to_numeric)
     df.index = pd.DatetimeIndex(df.index)
     df.rename(columns=lambda s: s[3:], inplace=True)
+    print(df.head(78))
     return df.close
 
-a = ['AAPL','AMZN','FB','GS','NFLX']
+# a = ['AAPL','AMZN','FB','GS','NFLX']
+a = ['AAPL']
 
 responses = {}
 for stock_index in a:
@@ -21,16 +23,22 @@ for stock_index in a:
     if response.status_code != 200:
         raise ValueError("Could not retrieve data, code:", response.status_code)
     close_per_5min = bewerking(response)
-    # print (close_per_5min)
     responses[stock_index] = close_per_5min
-     # print(raw_data)
 
-print (responses)
-
-print (responses['AAPL'].loc['2019-11-13 09:35:00 '][0])
-
-# print(responses.values([1]) #prints values
 # print (responses)
+# print (responses['AAPL'].loc['2019-11-13 09:35:00 '][0])
+# for a in responses['AAPL']:
+#     print (a)
+
+print(responses['AAPL'][:390].max())
+print(responses['AAPL'][:390].idxmax())
+print(responses['AAPL'][:390].idxmin())
+
+pricemax = responses['AAPL'][:390].max()
+pricemin = responses['AAPL'][:390].min()
+
+print (pricemax)
+print (pricemin)
 
 # print(responses[1].loc['2019-12-03 16:00:00 '][0])
 # entry = responses[1].loc['2019-12-03 15:00:00 ']

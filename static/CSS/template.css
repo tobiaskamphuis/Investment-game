@@ -10,7 +10,7 @@ body {
  */
 
 header {
-  background-color: #DFB887;
+  background-color: #3498DB;
   height: 35px;
   width: 100%;
   opacity: .9;
@@ -54,6 +54,7 @@ div.about {
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
+
 
 h2 {
   font-size: 3em;

@@ -2,6 +2,7 @@ from datetime import date
 # from  api import responses
 
 
+
 class Order:
     def __init__(self, order, order_type, quantity, investment):
         self.order = order
