@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Investment Game</title>
+    <link rel="stylesheet" href="{{ url_for('static',     filename='CSS/loginbox.css') }}">
+  </head>
+  <body>
+
+  {% block content %}
+  {% if session['logged_in'] %}
+
+    You're logged in already!
+
+    {% else %}
+
+    <form action="/login" method="POST">
+      <input type="username" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Log in">
+    </form>
+
+  {% endif %}
+  {% endblock %}
+
+  </body>
+</html>
