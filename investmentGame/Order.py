@@ -33,16 +33,16 @@ class Order:
                 elif execution_price > price:
                     return 'error'
 
+# #
+# order1 = Order('Buy', 'market_order', 10, 'AAPL')
 #
-order1 = Order('Buy', 'market_order', 10, 'AAPL')
-
-print(order1.quantity)
-print(order1.investment)
-print(order1.execution_order())
-
-order2 = Order('Buy', 'limit_order', 10, 'AAPL')
-
-print(order2.quantity)
-print(order2.investment)
-print(order2.execution_order(261))
+# print(order1.quantity)
+# print(order1.investment)
+# print(order1.execution_order())
+#
+# order2 = Order('Buy', 'limit_order', 10, 'AAPL')
+#
+# print(order2.quantity)
+# print(order2.investment)
+# print(order2.execution_order(269))
 
