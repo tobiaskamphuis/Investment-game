@@ -1,7 +1,8 @@
 from investmentGame.User import User
 from investmentGame.Portfolio import Portfolio
-from investmentGame.db import Base, engine, session_factory
-from sqlalchemy.sql import exists
+from investmentGame.db import db_engine_creation
+
+Base, engine, session_factory = db_engine_creation()
 
 def db_init():
 

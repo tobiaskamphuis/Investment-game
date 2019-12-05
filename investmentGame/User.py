@@ -2,8 +2,9 @@ from investmentGame.Order import Order
 from investmentGame.Portfolio import Portfolio
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from investmentGame.db import Base, engine, session_factory
+from sqlalchemy.ext.declarative import declarative_base
 
+Base = declarative_base()
 
 class User(Base):
     __tablename__ = "users"

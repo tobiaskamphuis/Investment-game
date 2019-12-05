@@ -1,8 +1,8 @@
-import pandas as pd
-from investmentGame.db import Base, engine, session_factory
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
-# from investmentGame.User import User
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 
 class Portfolio(Base):
