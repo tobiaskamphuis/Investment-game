@@ -4,6 +4,7 @@ import os
 from flask import Flask, flash, render_template, request, session
 from sqlalchemy.orm import sessionmaker
 # Here we are importing the Flask module and creating a Flask web server from the Flask module.
+# session by flask refers to http session within view (@app.route('/...')
 
 #import own generated files or database
 from investmentGame.db import engine
@@ -12,6 +13,14 @@ from investmentGame.User import User
 app = Flask(__name__)
 # _name means this current file. In this case, it will be web_gui.py. This file represents my web application
 # We are creating an instance of the Flask class and calling it app. Here we are creating a new web application.
+
+
+Session = sessionmaker(bind=engine)
+s = Session()
+add_user = User(name="Esther", password="password", age=25, balance=1000)
+s.add(add_user)
+print(s.query(User).filter_by(name='Esther').first())
+s.commit()
 
 
 # if you are logged in, the home screen will be shown, if you are not logged in, you will have to login
@@ -27,14 +36,6 @@ def home():
 # default page, below function will be activated if default page is reached
 def about():
     return render_template("about.html")
-
-
-Session = sessionmaker(bind=engine)
-s = Session()
-add_user = User(1, "Esther", "password", 25, 1000)
-s.add(add_user)
-session.query(User).filter_by(name='Esther').first()
-s.commit()
 
 
 # validation of login variables if you have to login
