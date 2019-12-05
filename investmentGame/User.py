@@ -8,6 +8,7 @@ class User(Base):
     __tablename__ = "Users"
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    password = Column(String)
     age = Column(Integer)
     balance = Column(Integer)
     #portfolio = Portfolio()
